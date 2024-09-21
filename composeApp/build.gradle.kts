@@ -47,7 +47,7 @@ kotlin {
 
 tasks.register("cleanWebApp") {
     doLast {
-        delete(rootProject.layout.projectDirectory.dir("webApp").asFile)
+        delete(rootProject.layout.projectDirectory.dir("docs").asFile)
     }
 }
 
@@ -57,7 +57,7 @@ tasks.register<Copy>("copyWebApp") {
     from("build/dist/wasmJs/productionExecutable") {
         include("**/*") // Копируем все файлы и папки
     }
-    into(rootProject.layout.projectDirectory.dir("webApp"))
+    into(rootProject.layout.projectDirectory.dir("docs"))
 }
 
 tasks.register("wasmJsBrowserDistributionWrapper") {
