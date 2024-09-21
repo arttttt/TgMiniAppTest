@@ -1,0 +1,16 @@
+{
+  "name": "tgminiapptest",
+  "version": "1.0.0",
+  "description": "This is a Kotlin Multiplatform project targeting Web.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-https": "http-server ./ -S -C ./localhost.pem -K ./localhost-key.pem"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
