@@ -45,4 +45,26 @@ kotlin {
     }
 }
 
+tasks.register("cleanWebApp") {
+    doLast {
+        delete(rootProject.layout.projectDirectory.dir("webApp").asFile)
+    }
+}
 
+tasks.register<Copy>("copyWebApp") {
+    mustRunAfter("wasmJsBrowserDistributionWrapper")
+
+    from("build/dist/wasmJs/productionExecutable") {
+        include("**/*") // Копируем все файлы и папки
+    }
+    into(rootProject.layout.projectDirectory.dir("webApp"))
+}
+
+tasks.register("wasmJsBrowserDistributionWrapper") {
+    mustRunAfter("cleanWebApp")
+    dependsOn("wasmJsBrowserDistribution")
+}
+
+tasks.register("buildAndDeployWebApp") {
+    dependsOn("wasmJsBrowserDistributionWrapper", "cleanWebApp", "copyWebApp")
+}
